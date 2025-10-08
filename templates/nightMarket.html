@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>台南花園夜市</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <p class="nav-logo">台南花園夜市</p>
+        </div>
+    </div>
+</nav>
+
+<!-- 主要內容 -->
+<div class="container">
+    <h2>不論是一個人，或是與家人、朋友，來到此處盡情的吃喝玩樂，度過一個快樂的夜晚吧!!!</h2>
+
+    <!-- 景點圖片 -->
+    <img src="{{ url_for('static', filename='images/夜市.jpg') }}" alt="景點圖片" style="max-width:100%; margin-bottom:1em;">
+
+    <!-- 景點簡介 -->
+    <p>
+        台南花園夜市是台灣南部最具代表性的夜市之一，自開幕以來深受在地人和遊客的喜愛。
+        2013年，花園夜市更躋身「全球熱門打卡地點」榜單第12名，成為國內外旅人爭相造訪的景點之一。
+        這裡匯聚多樣化的小吃、流行服飾、遊戲攤位及文創商品，提供豐富的夜市體驗。
+        經過多年發展，花園夜市在2023年（民國112年）榮獲「南台灣第一家五星夜市」殊榮，
+        展現其對環境衛生、服務品質與商家多元性的持續提升。
+        無論是品嚐美食、購物還是享受熱鬧氣氛，花園夜市都能讓每位訪客留下美好回憶，
+        是探索台南夜生活的絕佳選擇。
+    </p>
+
+    <!-- 景點資訊 -->
+    <h3>景點資訊</h3>
+    <h4>開放時間</h4>
+    <ul class="opening-hours">
+        <li><strong>星期日：</strong>17:00 – 00:00</li>
+        <li><strong>星期一：</strong>休息</li>
+        <li><strong>星期二：</strong>休息</li>
+        <li><strong>星期三：</strong>休息</li>
+        <li><strong>星期四：</strong>17:00 – 00:00</li>
+        <li><strong>星期五：</strong>休息</li>
+        <li><strong>星期六：</strong>17:00 – 00:00</li>
+    </ul>
+
+    <h4>電話</h4>
+    <p>06-3583867</p>
+
+    <!-- 景點推薦 -->
+    <h3>景點推薦</h3>
+
+    <h4>花園夜市停車場</h4>
+    <p>這邊還有停車場可以停車喔！</p>
+    <img src="{{ url_for('static', filename='images/20250124182712_0_0b9d13-1536x1152.jpg') }}" alt="停車場" style="max-width:100%; margin-bottom:1em;">
+
+    <h4>歐とう桑蒜香烏龍豆干</h4>
+    <p>香噴噴！逛夜市的時候就會被這家吸引！豆干咬下相當水潤，搭配鹹香的蒜香醬汁，每口都有香濃蒜香。</p>
+    <img src="{{ url_for('static', filename='images/20220226220202_36.jpg') }}" alt="蒜香烏龍豆干" style="max-width:100%; margin-bottom:1em;">
+    <img src="{{ url_for('static', filename='images/20210408161443_49-768x851.jpg') }}" alt="蒜香烏龍豆干" style="max-width:100%; margin-bottom:1em;">
+
+    <h4>麻糬叔叔</h4>
+    <p>麻糬叔叔有日式風格、彩虹般餡料，生意很好，店家包麻糬手從來沒停過，已經開快30年。</p>
+    <img src="{{ url_for('static', filename='images/20200126103323_28-768x768.jpg') }}" alt="麻糬叔叔" style="max-width:100%; margin-bottom:1em;">
+    <img src="{{ url_for('static', filename='images/20200126103348_61-768x768.jpg') }}" alt="麻糬叔叔" style="max-width:100%; margin-bottom:1em;">
+
+    <!-- 地點資訊 -->
+    <h3>地點資訊</h3>
+    <p>地址：704台南市北區海安路三段533號</p>
+    <p>交通方式：搭乘捷運、公車，或自行開車皆可抵達。</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.3268038590645!2d120.20071000000002!3d23.01177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e7659ed76b0c7%3A0xa2380aab1510d45c!2z6Ie65Y2X5biC6Iqx5ZyS5aSc5biC!5e0!3m2!1szh-TW!2stw!4v1758695507428!5m2!1szh-TW!2stw" 
+        width="100%" height="450" style="border:0; margin-bottom:1em;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <h4>設施與服務</h4>
+    <ul class="info-list">
+      <li>無障礙入口</li>
+      <li>無障礙洗手間</li>
+      <li>門市服務</li>
+      <li>性別友善洗手間</li>
+      <li>洗手間</li>
+      <li>只收現金</li>
+      <li>適合兒童</li>
+      <li>收費停車場</li>
+      <li>收費路邊停車格</li>
+      <li>免費停車場</li>
+      <li>附設停車場</li>
+    </ul>
+
+    <!-- 最新消息 -->
+    <h3>最新消息</h3>
+    <ul>
+        <li>
+            <a href="https://news.ltn.com.tw/news/life/breakingnews/5155067" target="_blank">
+                穿禮服逛台南花園夜市 國際選美皇后大啖小吃美食
+            </a>
+            <img src="{{ url_for('static', filename='images/5155067_1_1.jpg') }}" alt="新聞" style="max-width:100%; margin-bottom:1em;">
+        </li>
+    </ul>
+
+</div>
+
+<!-- 頁尾 -->
+<footer>
+    &copy; 2025 景點版權所有
+</footer>
+
+</body>
+</html>
