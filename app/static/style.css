@@ -96,6 +96,30 @@ body {
   font-size: 0.95em;
 }
 
+/* UserAccountView */
+.profile-container {
+  display: flex;
+  align-items: center; /* 垂直置中圖片與文字 */
+  gap: 20px; /* 圖片與文字之間的間距 */
+}
+
+.profile-img {
+  width: 120px; /* 可依需要調整大小 */
+  height: 120px;
+  border-radius: 50%; /* 如果你想讓它變成圓形頭像 */
+  object-fit: cover;
+}
+
+.profile-info h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+#detail-title {
+  margin: 5px 0 0;
+  color: #555;
+}
+
 /* Flash messages */
 .alert {
   padding: 1em;
