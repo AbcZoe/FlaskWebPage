@@ -2,7 +2,7 @@
 {% block title %}登入會員{% endblock title %}
 {% block content %}
     <div class="content-section">
-        <form method="POST" action="{{ url_for('users.login') }}"> 
+        <form method="POST" action="{{ url_for('login') }}"> 
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">登入</legend>
@@ -43,17 +43,17 @@
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
-                <small class="text-muted ml-2">
-                    <a href="{{url_for('users.reset_request')}}">忘記密碼?</a>
-                </small>
             </div>
+            <small class="text-muted ml-2">
+                <a href="#">忘記密碼?</a>
+            </small>
         </form>
     </div>
 
     <div class="border-top pt-3"> 
         <small class="text-muted">
             還沒有帳號? 
-            <a class="ml-2" href="{{ url_for('users.register') }}">現在註冊!</a>
+            <a class="ml-2" href="{{ url_for('register') }}">現在註冊!</a>
         </small>
     </div>
 {% endblock content %}

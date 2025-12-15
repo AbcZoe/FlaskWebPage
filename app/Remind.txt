@@ -5,7 +5,6 @@ pip install email_validator
 pip install flask_bcrypt
 pip install flask_login
 pip install Pillow
-pip install flask-mail
 
 需要清空資料庫裡的資料時:
 from app import app, db

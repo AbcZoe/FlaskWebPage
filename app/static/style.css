@@ -65,24 +65,6 @@ body {
   padding: 1.5em;
 }
 
-/* spot-list 與 right-content 的區塊設計 */
-.spot-list {
-  flex: 0 0 40%; /* 佔畫面寬度 40% */
-  padding: 1em;
-  display: flex;
-  flex-direction: column; /* 讓景點卡片垂直排列 */
-  gap: 1.5em; /* 卡片間的垂直間距 */
-}
-
-.right-content {
-  flex: 0 0 60%; /* 佔畫面寬度 60% */
-  padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff; /* 讓右側區塊有背景色，避免透明 */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* 增加陰影效果 */
-}
-
 /* spot card */
 .spot-card {
   background-color: #fff;
@@ -116,21 +98,16 @@ body {
 
 /* 整個文章卡片區塊 */
 article {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 20px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 600px; /* 設定文章區塊最大寬度 */
-  width: 100%;      /* 占滿父容器寬度，但不超過 max-width */
-  box-sizing: border-box;
-  word-wrap: break-word; /* 防止長單詞撐開版面 */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 article:hover {
     transform: translateY(-3px);
@@ -171,13 +148,9 @@ article:hover {
 
 /* 文章標題 */
 .article-title {
-  font-size: 1.5rem;
-  color: #333;
-  text-decoration: none;
-  max-width: 100%; /* 遵循父容器寬度 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 1.5rem;
+    color: #333;
+    text-decoration: none;
 }
 
 .article-title:hover {
@@ -187,13 +160,11 @@ article:hover {
 
 /* 文章內容 */
 .article-content {
-  color: #555;
-  margin-top: 10px;
-  white-space: pre-wrap; /* 保留換行 */
-  line-height: 1.6;
-  font-size: 1rem;
-  max-width: 100%; /* 遵循父容器寬度 */
-  word-break: break-word; /* 防止長字串或網址撐開版面 */
+    color: #555;
+    margin-top: 10px;
+    white-space: pre-wrap; /* 保留換行 */
+    line-height: 1.6;
+    font-size: 1rem;
 }
 
 /* UserAccountView */
@@ -303,5 +274,4 @@ footer {
     display: block; /* 使每個項目在新行顯示 */
     margin: 0.3em 0; /* 每個項目有一些間隔 */
   }
-
 }

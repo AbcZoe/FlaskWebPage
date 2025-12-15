@@ -6,11 +6,11 @@
 
 <div style="display: flex; gap: 20px;">
     <!-- 左側景點卡片 -->
-    <div class="spot-list">
+    <div class="spot-list" style="flex: 1;">
         <div class="spot-card"
              data-title="台南花園夜市"
              data-desc="南部最具代表性的夜市，小吃、遊戲攤位、文創商品應有盡有"
-             data-link="{{ url_for('main.nightMarket') }}" style="cursor:pointer;"
+             data-link="{{ url_for('nightMarket') }}" style="cursor:pointer;"
              >
             <img src="{{ url_for('static', filename='images/夜市.jpg') }}" style="width:100%; border-radius:6px;">
             <h3>台南花園夜市</h3>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- 右側詳情區塊 -->
-    <div class="right-content">
+    <div class="right-content" style="flex: 1; border: 1px solid #ccc; padding: 10px; border-radius: 6px;">
         <h2 id="detail-title">請點擊左側景點</h2>
         <p id="detail-text">點擊左側的任一景點卡以查看詳細介紹。</p>
         <a id="detail-link" href="#" target="_blank" style="display: none; color:#d2691e;">查看更多</a>
@@ -41,7 +41,6 @@
         <div id="posts-container" style="flex:1; border:1px solid #ccc; padding:10px; border-radius:6px;">
             <p>目前沒有貼文。</p>
         </div>
-
     </div>
 </div>
 
@@ -57,88 +56,6 @@ const postsContainer = document.getElementById('posts-container');
 //// 取得「我要貼文」按鈕（登入才會有）的控制權
 const newPostBtn = document.getElementById('new-post-btn');
 
-function formatDate(isoString) {
-    const date = new Date(isoString);
-    const Y = date.getFullYear();
-    const M = String(date.getMonth() + 1).padStart(2, '0'); // 月份從 0 開始
-    const D = String(date.getDate()).padStart(2, '0');
-    const h = String(date.getHours()).padStart(2, '0');
-    const m = String(date.getMinutes()).padStart(2, '0');
-    const s = String(date.getSeconds()).padStart(2, '0');
-    return `${Y}-${M}-${D} ${h}:${m}:${s}`;
-}
-
-function loadPosts(title, page = 1) {
-    postsContainer.innerHTML = '<p>載入中...</p>';
-
-    fetch(`/api/posts/${encodeURIComponent(title)}?page=${page}`)
-        .then(res => res.json())
-        .then(data => {
-            const posts = data.posts;
-            const currentPage = data.page;
-            const totalPages = data.pages;
-
-            // 貼文內容
-            let html = '';
-            if(posts.length === 0){
-                html = '<p>目前沒有貼文。</p>';
-            } else {
-                posts.forEach(post => {
-                    html += `
-                    <article>
-                        <img class="profile-img" src="${post.author_image}">
-                        <div class="media-body">
-                            <div>
-                                <a href="/user/${encodeURIComponent(post.author)}">${post.author}</a>
-                                <small>${formatDate(post.date_posted)}</small>
-                            </div>
-                            <a href="/post/${post.id}">
-                                <h2 class="article-title">${post.title}</h2>
-                            </a>
-                            <p class="article-content">${post.content}</p>
-                        </div>
-                    </article>`;
-                });
-            }
-
-            // 分頁生成函式
-            function renderPagination(title, currentPage, totalPages) {
-                let html = '<div style="margin-top:10px;">';
-                const delta = 1; 
-                const pages = [];
-
-                for (let i = 1; i <= totalPages; i++) {
-                    if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
-                        pages.push(i);
-                    }
-                }
-
-                let lastPage = 0;
-                for (let i of pages) {
-                    if (lastPage && i - lastPage > 1) {
-                        html += `<span style="margin:0 5px;">...</span>`;
-                    }
-                    if (i === currentPage) {
-                        html += `<span style="margin:0 5px; font-weight:bold;">${i}</span>`;
-                    } else {
-                        html += `<button style="margin:0 3px;" onclick="loadPosts('${title}', ${i})">${i}</button>`;
-                    }
-                    lastPage = i;
-                }
-
-                html += '</div>';
-                return html;
-            }
-
-            // 加入分頁
-            html += renderPagination(title, currentPage, totalPages);
-            postsContainer.innerHTML = html;
-        })
-        .catch(err => {
-            postsContainer.innerHTML = '<p>載入貼文時發生錯誤。</p>';
-            console.error(err);
-        });
-}
 
 //給每個景點卡都添加click事件
 cards.forEach(card => {
@@ -155,9 +72,45 @@ cards.forEach(card => {
         detailLink.style.display = 'inline-block';
 
         // 更新「我要貼文」連結，讓按鈕導向 "/post/new/景點名稱"
-        if(newPostBtn) newPostBtn.href = "{{ url_for('posts.new_post', spot_name='___') }}".replace('___', encodeURIComponent(title));
+        if(newPostBtn) newPostBtn.href = `/post/new/${encodeURIComponent(title)}`;
 
-        loadPosts(title, 1);
+        // 載入貼文
+        postsContainer.innerHTML = '<p>載入中...</p>'; // 顯示載入提示
+
+        // 呼叫後端 API 取得該景點的所有貼文資料 (在routes.py裡有一條路是做這個用的)
+        fetch(`/api/posts/${encodeURIComponent(title)}`)
+            .then(res => res.json())
+            .then(posts => {
+                //沒有貼文時顯示提示文字
+                if(posts.length === 0){
+                    postsContainer.innerHTML = '<p>目前沒有貼文。</p>';
+                } else {
+                    //有貼文時，就把相關的每個貼文都顯示出來
+                    let html = ``;
+                    posts.forEach(post => {
+                        html += `
+                        <article>
+                            <img class="profile-img" src="${post.author_image}">
+                            <div class="media-body">
+                                <div>
+                                    <a href="#">${post.author}</a>
+                                    <small>${post.date_posted}</small>
+                                </div>
+                                <a href="/post/${post.id}">
+                                    <h2 class="article-title">${post.title}</h2>
+                                </a>
+                                <p class="article-content">${post.content}</p>
+                            </div>
+                        </article>`;
+                    });
+                    postsContainer.innerHTML = html;
+                }
+            })
+            .catch(err => {
+                //有甚麼BUG就顯示"載入貼文時發生錯誤"
+                postsContainer.innerHTML = '<p>載入貼文時發生錯誤。</p>';
+                console.error(err);
+            });
     });
 });
 </script>
