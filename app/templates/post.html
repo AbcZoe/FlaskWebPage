@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ post.title }}{% endblock title %}
+
+{% block content %}
+<h1>{{ post.title }}</h1> 
+
+<article>
+    <img class="profile-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="作者圖片">
+    <div class="media-body">
+        <div>
+            <a href="#">{{ post.author.username }}</a>
+            <small>{{ post.date_posted }}</small>
+            {% if post.author == current_user %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_post', post_id=post.id) }}">更新貼文</a>
+                <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deletwModal">刪除貼文</button>
+            </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ post.title }}</h2>
+        <p class="article-content">{{ post.content }}</p>
+    </div>
+</article>
+
+<!-- Modal -->
+<div class="modal fade" id="deletwModal" tabindex="-1" aria-labelledby="deletwModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deletwModalLabel">確定要刪除該貼文嗎?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="確定">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

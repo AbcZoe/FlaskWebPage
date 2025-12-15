@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+{% block title %}我的景點網站{% endblock title %}
+
+{% block content %}
+<h1>台南旅遊景點推薦</h1>
+
+<div style="display: flex; gap: 20px;">
+    <!-- 左側景點卡片 -->
+    <div class="spot-list">
+        <div class="spot-card"
+             data-title="台南花園夜市"
+             data-desc="南部最具代表性的夜市，小吃、遊戲攤位、文創商品應有盡有"
+             data-link="{{ url_for('nightMarket') }}" style="cursor:pointer;"
+             >
+            <img src="{{ url_for('static', filename='images/夜市.jpg') }}" style="width:100%; border-radius:6px;">
+            <h3>台南花園夜市</h3>
+        </div>
+
+        <div class="spot-card"
+             data-title="赤崁樓"
+             data-desc="赤崁樓是台南最具歷史意義的古蹟之一"
+             data-link="https://historic.tainan.gov.tw/index.php?option=module&lang=cht&task=pageinfo&id=46&index=3"
+             style="cursor:pointer;"
+             >
+            <img src="{{ url_for('static', filename='images/赤崁樓.jpg') }}" style="width:100%; border-radius:6px;">
+            <h3>赤崁樓</h3>
+        </div>
+    </div>
+
+    <!-- 右側詳情區塊 -->
+    <div class="right-content">
+        <h2 id="detail-title">請點擊左側景點</h2>
+        <p id="detail-text">點擊左側的任一景點卡以查看詳細介紹。</p>
+        <a id="detail-link" href="#" target="_blank" style="display: none; color:#d2691e;">查看更多</a>
+
+        <!-- 有登入才看到「我要貼文」 -->
+        {% if current_user.is_authenticated %}
+        <a id="new-post-btn" href="#" style="display:block; margin-top:10px; color:#1e90ff;">我要貼文</a>
+        {% endif %}
+
+        <div id="posts-container" style="flex:1; border:1px solid #ccc; padding:10px; border-radius:6px;">
+            <p>目前沒有貼文。</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+//取得所有景點卡div的控制權，方便等一下做onClick
+const cards = document.querySelectorAll('.spot-card');
+//取得所有景點div裡面的東西(比如標題、介紹文字、介紹的連結)的控制權
+const detailTitle = document.getElementById('detail-title');
+const detailText = document.getElementById('detail-text');
+const detailLink = document.getElementById('detail-link');
+//取得貼文區div的控制權
+const postsContainer = document.getElementById('posts-container');
+//// 取得「我要貼文」按鈕（登入才會有）的控制權
+const newPostBtn = document.getElementById('new-post-btn');
+
+function formatDate(isoString) {
+    const date = new Date(isoString);
+    const Y = date.getFullYear();
+    const M = String(date.getMonth() + 1).padStart(2, '0'); // 月份從 0 開始
+    const D = String(date.getDate()).padStart(2, '0');
+    const h = String(date.getHours()).padStart(2, '0');
+    const m = String(date.getMinutes()).padStart(2, '0');
+    const s = String(date.getSeconds()).padStart(2, '0');
+    return `${Y}-${M}-${D} ${h}:${m}:${s}`;
+}
+
+function loadPosts(title, page = 1) {
+    postsContainer.innerHTML = '<p>載入中...</p>';
+
+    fetch(`/api/posts/${encodeURIComponent(title)}?page=${page}`)
+        .then(res => res.json())
+        .then(data => {
+            const posts = data.posts;
+            const currentPage = data.page;
+            const totalPages = data.pages;
+
+            // 貼文內容
+            let html = '';
+            if(posts.length === 0){
+                html = '<p>目前沒有貼文。</p>';
+            } else {
+                posts.forEach(post => {
+                    html += `
+                    <article>
+                        <img class="profile-img" src="${post.author_image}">
+                        <div class="media-body">
+                            <div>
+                                <a href="/user/${encodeURIComponent(post.author)}">${post.author}</a>
+                                <small>${formatDate(post.date_posted)}</small>
+                            </div>
+                            <a href="/post/${post.id}">
+                                <h2 class="article-title">${post.title}</h2>
+                            </a>
+                            <p class="article-content">${post.content}</p>
+                        </div>
+                    </article>`;
+                });
+            }
+
+            // 分頁生成函式
+            function renderPagination(title, currentPage, totalPages) {
+                let html = '<div style="margin-top:10px;">';
+                const delta = 1; 
+                const pages = [];
+
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+                        pages.push(i);
+                    }
+                }
+
+                let lastPage = 0;
+                for (let i of pages) {
+                    if (lastPage && i - lastPage > 1) {
+                        html += `<span style="margin:0 5px;">...</span>`;
+                    }
+                    if (i === currentPage) {
+                        html += `<span style="margin:0 5px; font-weight:bold;">${i}</span>`;
+                    } else {
+                        html += `<button style="margin:0 3px;" onclick="loadPosts('${title}', ${i})">${i}</button>`;
+                    }
+                    lastPage = i;
+                }
+
+                html += '</div>';
+                return html;
+            }
+
+            // 加入分頁
+            html += renderPagination(title, currentPage, totalPages);
+            postsContainer.innerHTML = html;
+        })
+        .catch(err => {
+            postsContainer.innerHTML = '<p>載入貼文時發生錯誤。</p>';
+            console.error(err);
+        });
+}
+
+//給每個景點卡都添加click事件
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        //拿景點卡div裡給的文字或連結
+        const title = card.getAttribute('data-title');
+        const desc = card.getAttribute('data-desc');
+        const link = card.getAttribute('data-link');
+
+        // 更新右側資訊(填進去)
+        detailTitle.innerText = title;
+        detailText.innerText = desc;
+        detailLink.href = link;
+        detailLink.style.display = 'inline-block';
+
+        // 更新「我要貼文」連結，讓按鈕導向 "/post/new/景點名稱"
+        if(newPostBtn) newPostBtn.href = `/post/new/${encodeURIComponent(title)}`;
+
+        loadPosts(title, 1);
+    });
+});
+</script>
+{% endblock content %}
