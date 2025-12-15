@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>地點資訊</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}">首頁</a>
+    <a href="{{ url_for('about') }}">關於景點</a>
+    <a href="{{ url_for('location') }}">地點資訊</a>
+    <a href="{{ url_for('news') }}">最新消息</a>
+  </nav>
+
+<div class="container">
+    <h2>如何前往</h2>
+    <p>地址：704台南市北區海安路三段533號</p>
+    <p>交通方式：搭乘捷運、公車，或自行開車皆可抵達。</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.3268038590645!2d120.20071000000002!3d23.01177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e7659ed76b0c7%3A0xa2380aab1510d45c!2z6Ie65Y2X5biC6Iqx5ZyS5aSc5biC!5e0!3m2!1szh-TW!2stw!4v1758695507428!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h2>設施與服務</h2>
+    <h4>無障礙程度</h4>
+    <ul class="info-list">
+    <li>無障礙入口</li>
+    <li>無障礙洗手間</li>
+    </ul>
+
+    <h4>服務項目</h4>
+    <ul class="info-list">
+    <li>門市服務</li>
+    </ul>
+
+    <h4>設施</h4>
+    <ul class="info-list">
+    <li>性別友善洗手間</li>
+    <li>洗手間</li>
+    </ul>
+
+    <h4>付款方式</h4>
+    <ul class="info-list">
+    <li>只收現金</li>
+    </ul>
+
+    <h4>兒童</h4>
+    <ul class="info-list">
+    <li>適合兒童</li>
+    </ul>
+
+    <h4>停車場</h4>
+    <ul class="info-list">
+    <li>收費停車場</li>
+    <li>收費路邊停車格</li>
+    <li>免費停車場</li>
+    <li>附設停車場</li>
+    </ul>
+
+</div>
+
+<footer>
+  &copy; 2025 景點版權所有
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>關於景點</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+  <a href="{{ url_for('home') }}">首頁</a>
+  <a href="{{ url_for('about') }}">關於景點</a>
+  <a href="{{ url_for('location') }}">地點資訊</a>
+  <a href="{{ url_for('news') }}">最新消息</a>
+</nav>
+
+<div class="container">
+  <h2>花園夜市停車場</h2>
+  <p>這邊還有停車場可以停車喔！</p>
+  <img src="{{ url_for('static', filename='images/20250124182712_0_0b9d13-1536x1152.jpg') }}" alt="停車場" style="max-width:100%;">
+  
+  <h2>歐とう桑蒜香烏龍豆干</h2>
+  <p>香噴噴！逛夜市的時候就會被這家歐とう桑蒜香烏龍豆干給吸引！因為他們有香濃的蒜香醬汁，搭配用中藥材燉煮的豆干，也難怪總有滿滿的人潮。</p>
+  <p>豆干本身就有烏龍茶的茶香，而且自製的豆干咬下相當水潤，搭配鹹香夠味的蒜香醬汁，每口都有香濃的蒜香相當過癮！</p>
+  <img src="{{ url_for('static', filename='images/20220226220202_36.jpg') }}" alt="蒜香烏龍豆干" style="max-width:100%;">
+  <img src="{{ url_for('static', filename='images/20210408161443_49-768x851.jpg') }}" alt="蒜香烏龍豆干" style="max-width:100%;">
+  
+  <h2>麻糬叔叔</h2>
+  <p>麻糬叔叔有滿滿的日式風格而且還有如彩虹般整桌的餡料，讓人散步路過會馬上注意到，而且生意很好店家包麻糬的手從來沒停過，厲害的是這家居然在台南已經開了快30年！也是很多台南人的回憶。</p>
+  <p>跟外面麻糬有嚼勁風格不太一樣，因為本身水潤像吃芝麻口味完全不用擔心噎住，重點是每一種口味吃起來都很有味道，都有著完全不同的風味很吸引人，再加上平實的價格也難怪能在競爭的夜市屹立不搖３０年！</p>
+  <img src="{{ url_for('static', filename='images/20200126103323_28-768x768.jpg') }}" alt="麻糬叔叔" style="max-width:100%;">
+  <img src="{{ url_for('static', filename='images/20200126103348_61-768x768.jpg') }}" alt="麻糬叔叔" style="max-width:100%;">
+</div>
+
+<footer>
+  &copy; 資訊來源: https://achingfoodie.tw/fnm/#%E8%8A%B1%E5%9C%92%E5%A4%9C%E5%B8%82%E5%81%9C%E8%BB%8A%E5%A0%B4
+</footer>
+
+</body>
+</html>

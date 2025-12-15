@@ -1,0 +1,86 @@
+/* style.css - 柔和橘棕主題，無 header */
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f3f1e7; /* 米白色背景 */
+  color: #2e2e2e;
+}
+
+nav {
+  background-color: #d2691e; /* 溫柔焦糖橘 */
+  display: flex;
+  justify-content: center;
+  padding: 0.5em 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  background-color: #a0522d; /* 深棕橘 */
+}
+
+.container {
+  max-width: 960px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+  background-color: #e6ccb2; /* 淺焦糖色 */
+  font-size: 0.9em;
+  margin-top: 2em;
+  color: #2e2e2e;
+}
+
+.opening-hours {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+  background-color: #fff4e0;
+  border: 1px solid #e0c2a2;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.opening-hours li {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e0c2a2;
+  font-size: 1em;
+}
+
+.opening-hours li:last-child {
+  border-bottom: none;
+}
+
+.opening-hours li strong {
+  display: inline-block;
+  width: 90px;
+  color: #a0522d;
+}
+
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    text-align: center;
+    padding: 0.8em;
+  }
+}

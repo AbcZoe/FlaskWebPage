@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>最新消息</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('home') }}">首頁</a>
+        <a href="{{ url_for('about') }}">關於景點</a>
+        <a href="{{ url_for('location') }}">地點資訊</a>
+        <a href="{{ url_for('news') }}">最新消息</a>
+    </nav>
+    <div class="container">
+        <ul>
+            <li>
+                <div class="event">
+                    <a href="https://news.ltn.com.tw/news/life/breakingnews/5155067" target="_blank">
+                    <h4>穿禮服逛台南花園夜市 國際選美皇后大啖小吃美食</h4>
+                    </a>
+                    <img src="{{ url_for('static', filename='images/5155067_1_1.jpg') }}" alt="新聞" class="event-image">
+                </div>
+            </li>
+        </ul>
+    </div>
+<footer>
+  &copy; 2025 景點版權所有
+</footer>
+
+</body>
+</html>

@@ -1,9 +1,50 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <h1>Home Page</h1>
-    </body>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>景點介紹 - 首頁</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <a href="{{ url_for('home') }}">首頁</a>
+    <a href="{{ url_for('about') }}">關於景點</a>
+    <a href="{{ url_for('location') }}">地點資訊</a>
+    <a href="{{ url_for('news') }}">最新消息</a>
+  </nav>
+
+<div class="container">
+    <h1>台南花園夜市</h1>
+    <h2>不論是一個人，或是與家人、朋友，來到此處盡情的吃喝玩樂，度過一個快樂的夜晚吧!!!</h2>
+    <img src="{{ url_for('static', filename='images/夜市.jpg') }}" alt="景點圖片" style="max-width:100%;">
+    <p>
+      台南花園夜市是台灣南部最具代表性的夜市之一，自開幕以來深受在地人和遊客的喜愛。2013年，花園夜市更躋身「全球熱門打卡地點」榜單第12名，成為國內外旅人爭相造訪的景點之一。
+      這裡匯聚多樣化的小吃、流行服飾、遊戲攤位及文創商品，提供豐富的夜市體驗。
+      經過多年發展，花園夜市在2023年（民國112年）榮獲「南台灣第一家五星夜市」殊榮，展現其對環境衛生、服務品質與商家多元性的持續提升。無論是品嚐美食、購物還是享受熱鬧氣氛，
+      花園夜市都能讓每位訪客留下美好回憶，是探索台南夜生活的絕佳選擇。
+    </p>
+    <h3>景點資訊</h3>
+    <h4>開放時間</h4>
+    <ul class="opening-hours">
+      <li><strong>星期日：</strong>17:00 – 00:00</li>
+      <li><strong>星期一：</strong>休息</li>
+      <li><strong>星期二：</strong>休息</li>
+      <li><strong>星期三：</strong>休息</li>
+      <li><strong>星期四：</strong>17:00 – 00:00</li>
+      <li><strong>星期五：</strong>休息</li>
+      <li><strong>星期六：</strong>17:00 – 00:00</li>
+    </ul>
+    <h4>電話</h4>
+    <p>06-3583867</p>
+    <h4>相關連結</h4>
+    <a href="https://www.facebook.com/TainanGNM/" target="_blank">Facebook 專頁</a></li>
+    <p>更多訊息請點擊上方瀏覽詳細的介紹、地理位置與最新消息。</p>
+</div>
+
+<footer>
+    &copy; 2025 景點版權所有
+</footer>
+
+</body>
 </html>
