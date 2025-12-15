@@ -1,61 +1,9 @@
-{% extends "layout.html" %}
-{% block title %}我的景點網站{% endblock title %}
-
-{% block content %}
-<h1>台南旅遊景點推薦</h1>
-
-<div style="display: flex; gap: 20px;">
-    <!-- 左側景點卡片 -->
-    <div class="spot-list" style="flex: 1;">
-
-        <div class="spot-card"
-             data-title="台南花園夜市"
-             data-desc="南部最具代表性的夜市，小吃、遊戲攤位、文創商品應有盡有，適合全家與朋友一起逛！"
-             data-link="{{ url_for('nightMarket') }}"
-             style="cursor:pointer;">
-            <img src="{{ url_for('static', filename='images/夜市.jpg') }}" alt="台南花園夜市" style="width:100%; border-radius:6px;">
-            <h3>台南花園夜市</h3>
-        </div>
-
-            <!-- 景點 2 -->
-        <div class="spot-card"
-            data-title="赤崁樓"
-            data-desc="赤崁樓是台南最具歷史意義的古蹟之一，擁有數百年歷史，是拍照與了解台灣歷史文化的好去處。"
-            data-link="https://historic.tainan.gov.tw/index.php?option=module&lang=cht&task=pageinfo&id=46&index=3"
-            style="cursor:pointer;">
-            <img src="{{ url_for('static', filename='images/赤崁樓.jpg') }}" alt="赤崁樓" style="width:100%; border-radius:6px;">
-            <h3>赤崁樓</h3>
-        </div>
-
-    </div>
-
-    <!-- 右側詳情區塊 -->
-    <div class="right-content" style="flex: 1; border: 1px solid #ccc; padding: 10px; border-radius: 6px;">
-        <h2 id="detail-title">請點擊左側景點</h2>
-        <p id="detail-text">點擊左側的任一景點卡以查看詳細介紹。</p>
-        <a id="detail-link" href="#" target="_blank" style="display: none; color: #d2691e; font-weight: bold; text-decoration: underline;">查看更多</a>
-    </div>
-</div>
-
-<script>
-    const cards = document.querySelectorAll('.spot-card');
-    const detailTitle = document.getElementById('detail-title');
-    const detailText = document.getElementById('detail-text');
-    const detailLink = document.getElementById('detail-link'); // ← 修正這裡
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const title = card.getAttribute('data-title');  // ← 加了 data-title 才能抓到
-            const desc = card.getAttribute('data-desc');
-            const link = card.getAttribute('data-link');
-
-            detailTitle.innerText = title;
-            detailText.innerText = desc;
-            detailLink.href = link;
-            detailLink.style.display = 'inline-block';
-        });
-    });
-</script>
-
-{% endblock content %}
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Home Page</h1>
+    </body>
+</html>
