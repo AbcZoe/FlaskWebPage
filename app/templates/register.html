@@ -2,7 +2,7 @@
 {% block title %}註冊會員{% endblock title %}
 {% block content %}
     <div class="content-section">
-        <form method="POST" action="{{ url_for('register') }}"> 
+        <form method="POST" action="{{ url_for('users.register') }}"> 
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">註冊</legend>
@@ -72,7 +72,7 @@
     <div class="border-top pt-3"> 
         <small class="text-muted">
             已經有帳號了? 
-            <a class="ml-2" href="{{ url_for('login') }}">登入</a>
+            <a class="ml-2" href="{{ url_for('users.login') }}">登入</a>
         </small>
     </div>
 {% endblock content %}

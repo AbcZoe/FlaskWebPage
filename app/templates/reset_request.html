@@ -2,7 +2,7 @@
 {% block title %}{% endblock title %}
 {% block content %}
     <div class="content-section">
-        <form method="POST" action="{{ url_for('reset_request') }}">
+        <form method="POST" action="{{ url_for('users.reset_request') }}">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">更新密碼</legend>

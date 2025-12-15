@@ -10,7 +10,7 @@
         <div class="spot-card"
              data-title="台南花園夜市"
              data-desc="南部最具代表性的夜市，小吃、遊戲攤位、文創商品應有盡有"
-             data-link="{{ url_for('nightMarket') }}" style="cursor:pointer;"
+             data-link="{{ url_for('main.nightMarket') }}" style="cursor:pointer;"
              >
             <img src="{{ url_for('static', filename='images/夜市.jpg') }}" style="width:100%; border-radius:6px;">
             <h3>台南花園夜市</h3>
@@ -155,7 +155,7 @@ cards.forEach(card => {
         detailLink.style.display = 'inline-block';
 
         // 更新「我要貼文」連結，讓按鈕導向 "/post/new/景點名稱"
-        if(newPostBtn) newPostBtn.href = `/post/new/${encodeURIComponent(title)}`;
+        if(newPostBtn) newPostBtn.href = "{{ url_for('posts.new_post', spot_name='___') }}".replace('___', encodeURIComponent(title));
 
         loadPosts(title, 1);
     });
